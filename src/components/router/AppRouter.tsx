@@ -120,9 +120,9 @@ const LogoutFallback = withLoading(Logout);
 
 export const AppRouter: React.FC = () => {
   const protectedLayout = (
-    <RequireAuth>
+    // <RequireAuth>
       <MainLayout />
-    </RequireAuth>
+    // </RequireAuth>
   );
 
   return (
@@ -183,6 +183,12 @@ export const AppRouter: React.FC = () => {
             <Route path="skeleton" element={<Skeletons />} />
           </Route>
         </Route>
+
+
+        <Route path={NFT_DASHBOARD_PATH} element={protectedLayout}>
+          <Route path="mockup" element={<div>sdf</div>}/>
+        </Route>
+
         <Route path="/auth" element={<AuthLayoutFallback />}>
           <Route path="login" element={<LoginPage />} />
           <Route path="sign-up" element={<SignUpPage />} />
