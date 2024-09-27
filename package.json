@@ -133,5 +133,8 @@
     "admin-dashboard",
     "ant-design",
     "react"
-  ]
+  ],
+  "prettier": {
+    "endOfLine": "auto"
+  }
 }

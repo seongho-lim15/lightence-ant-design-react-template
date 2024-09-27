@@ -13,31 +13,30 @@ interface MobileHeaderProps {
   isSiderOpened: boolean;
 }
 
-export const MobileHeader: React.FC<MobileHeaderProps> = ({ toggleSider, isSiderOpened }) => {
+export const MockUpMobileHeader: React.FC<MobileHeaderProps> = ({ toggleSider, isSiderOpened }) => {
   return (
     <BaseRow justify="space-between" align="middle">
       <BaseCol>
-        <ProfileDropdown />
+        <h2>GEN Wave</h2>
       </BaseCol>
 
       <BaseCol>
         <BaseRow align="middle">
           <BaseCol>
-            <NotificationsDropdown />
           </BaseCol>
 
           <BaseCol>
-            <HeaderSearch />
+            {/*<HeaderSearch />*/}
           </BaseCol>
 
           <BaseCol>
-            <SettingsDropdown />
+            {/*<BaseButton type="default">생성</BaseButton>*/}
           </BaseCol>
         </BaseRow>
       </BaseCol>
 
       <S.BurgerCol>
-        <S.MobileBurger onClick={toggleSider} isCross={isSiderOpened} />
+        {/*<S.MobileBurger onClick={toggleSider} isCross={isSiderOpened} />*/}
       </S.BurgerCol>
     </BaseRow>
   );

@@ -16,6 +16,8 @@ import RequireAuth from '@app/components/router/RequireAuth';
 import { withLoading } from '@app/hocs/withLoading.hoc';
 import NftDashboardPage from '@app/pages/DashboardPages/NftDashboardPage';
 import MedicalDashboardPage from '@app/pages/DashboardPages/MedicalDashboardPage';
+import MockUpLayout from "@app/components/layouts/main/MainLayout/MockUpLayout";
+import MockUpDashboardPage from "@app/pages/DashboardPages/MockUpDashboardPage";
 
 const NewsFeedPage = React.lazy(() => import('@app/pages/NewsFeedPage'));
 const DataTablesPage = React.lazy(() => import('@app/pages/DataTablesPage'));
@@ -185,8 +187,8 @@ export const AppRouter: React.FC = () => {
         </Route>
 
 
-        <Route path={NFT_DASHBOARD_PATH} element={protectedLayout}>
-          <Route path="mockup" element={<div>sdf</div>}/>
+        <Route path={NFT_DASHBOARD_PATH} element={<MockUpLayout/>}>
+          <Route path="mockup" element={<MockUpDashboardPage />} />
         </Route>
 
         <Route path="/auth" element={<AuthLayoutFallback />}>

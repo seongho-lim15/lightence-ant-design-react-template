@@ -3,11 +3,13 @@ import { Header } from '../../../header/Header';
 import MainSider from '../sider/MainSider/MainSider';
 import MainContent from '../MainContent/MainContent';
 import { MainHeader } from '../MainHeader/MainHeader';
-import * as S from './MainLayout.styles';
+import * as S from './MockUpLayout.styles';
 import { Outlet, useLocation } from 'react-router-dom';
 import { MEDICAL_DASHBOARD_PATH, NFT_DASHBOARD_PATH } from '@app/components/router/AppRouter';
 import { useResponsive } from '@app/hooks/useResponsive';
 import { References } from '@app/components/common/References/References';
+import { MockUpLayoutMaster } from "@app/components/layouts/main/MainLayout/MockUpLayout.styles";
+import { MockUpHeader } from "@app/components/header/MockUpHeader";
 
 const MainLayout: React.FC = () => {
   const [isTwoColumnsLayout, setIsTwoColumnsLayout] = useState(true);
@@ -22,20 +24,22 @@ const MainLayout: React.FC = () => {
   }, [location.pathname, isDesktop]);
 
   return (
-    <S.LayoutMaster>
-      <MainSider isCollapsed={siderCollapsed} setCollapsed={setSiderCollapsed} />
-      <S.LayoutMain>
+    <S.MockUpLayoutMaster>
+      {/*<MainSider isCollapsed={siderCollapsed} setCollapsed={setSiderCollapsed} />*/}
+
+      <S.MockUpLayoutMain>
         <MainHeader isTwoColumnsLayout={isTwoColumnsLayout}>
-          <Header toggleSider={toggleSider} isSiderOpened={!siderCollapsed} isTwoColumnsLayout={isTwoColumnsLayout} />
+          <MockUpHeader toggleSider={toggleSider} isSiderOpened={!siderCollapsed} isTwoColumnsLayout={isTwoColumnsLayout} />
         </MainHeader>
+
         <MainContent id="main-content" $isTwoColumnsLayout={isTwoColumnsLayout}>
           <div>
             <Outlet />
           </div>
-          {!isTwoColumnsLayout && <References />}
+          {/*{!isTwoColumnsLayout && <References />}*/}
         </MainContent>
-      </S.LayoutMain>
-    </S.LayoutMaster>
+      </S.MockUpLayoutMain>
+    </S.MockUpLayoutMaster>
   );
 };
 

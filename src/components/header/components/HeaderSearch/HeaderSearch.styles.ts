@@ -21,13 +21,21 @@ export const InputSearch = styled(SearchInput)`
     display: none;
   }
 
-  @media only screen and ${media.md} {
-    .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
-      border-radius: 3.125rem;
-      border: 0;
-      padding: 0.5625rem 1.25rem;
+  // @media only screen and ${media.md} {
+  //   .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
+  //     border-radius: 3.125rem;
+  //     border: 0;
+  //     padding: 0.5625rem 1.25rem;
+  //   }
+  // }
+
+    @media only screen{
+        .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
+            border-radius: 3.125rem;
+            border: 0;
+            padding: 0.5625rem 1.25rem;
+        }
     }
-  }
 `;
 
 export const SearchModal = styled(BaseModal)`

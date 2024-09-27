@@ -32,7 +32,7 @@ export const BaseButtonsForm: BaseFormInterface<BaseButtonsFormProps> = ({
   return (
     <BaseForm form={currentForm} {...props}>
       {children}
-      {isFieldsChanged && (footer || <BaseButtonsGroup loading={loading} onCancel={onCancel} />)}
+      {footer || <BaseButtonsGroup loading={loading} onCancel={onCancel} />}
     </BaseForm>
   );
 };

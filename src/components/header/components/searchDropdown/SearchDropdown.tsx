@@ -42,26 +42,26 @@ export const SearchDropdown: React.FC<SearchOverlayProps> = ({
         open={isOverlayOpen}
         getPopupContainer={() => ref.current}
       >
-        <HeaderActionWrapper>
+        {/*<HeaderActionWrapper>*/}
           <InputSearch
             width="100%"
             value={query}
             placeholder={t('header.search')}
-            filter={
-              <Btn
-                size="small"
-                type={isFilterOpen ? 'ghost' : 'text'}
-                aria-label="Filter"
-                icon={<FilterIcon />}
-                onClick={() => setFilterOpen(!isFilterOpen)}
-              />
-            }
+            // filter={
+            //   <Btn
+            //     size="small"
+            //     type={isFilterOpen ? 'ghost' : 'text'}
+            //     aria-label="Filter"
+            //     icon={<FilterIcon />}
+            //     onClick={() => setFilterOpen(!isFilterOpen)}
+            //   />
+            // }
             onChange={(event) => setQuery(event.target.value)}
             enterButton={null}
             addonAfter={null}
           />
           <div ref={ref} />
-        </HeaderActionWrapper>
+        {/*</HeaderActionWrapper>*/}
       </BasePopover>
     </>
   );
