@@ -15,6 +15,7 @@ import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 import { BaseCheckbox } from '@app/components/common/BaseCheckbox/BaseCheckbox';
 import { BaseInput } from "@app/components/common/inputs/BaseInput/BaseInput";
+import { modelArray } from "@app/array/array";
 
 const formItemLayout = {
   labelCol: { span: 24 },
@@ -33,6 +34,8 @@ export const MockUpValidationForm: React.FC = () => {
   const [isLoading, setLoading] = useState(false);
   const { t } = useTranslation();
 
+  const [formValue] = useState(null);
+
   const onFinish = async (values = {}) => {
     setLoading(true);
     setTimeout(() => {
@@ -43,17 +46,17 @@ export const MockUpValidationForm: React.FC = () => {
     }, 1000);
   };
 
+  const [form] = BaseButtonsForm.useForm();
+
   return (
     <BaseButtonsForm
       {...formItemLayout}
+      form={form}
       isFieldsChanged={isFieldsChanged}
-      onFieldsChange={() => setFieldsChanged(true)}
-      name="validateForm"
-      initialValues={{
-        'input-number': 3,
-        'checkbox-group': ['A', 'B'],
-        rate: 3.5,
+      onFieldsChange={() => {
+        setFieldsChanged(true)
       }}
+      name="validateForm"
       footer={
         <BaseButtonsForm.Item>
           {/*<BaseButton type="primary" htmlType="submit" loading={isLoading}>*/}
@@ -63,20 +66,30 @@ export const MockUpValidationForm: React.FC = () => {
         </BaseButtonsForm.Item>
       }
       onFinish={onFinish}
+      initialValues={{
+        model: 'dall_e_3',           // 모델 선택의 초기값
+        prompt: '기본 프롬프트',      // 프롬프트 기본값
+        negtv_prompt: '기본 네거티브 프롬프트',
+        rate: '16_9',                // 비율 초기값
+        size: '1024x1024',           // 이미지 사이즈 초기값
+        foregroud_rate: 50,          // 슬라이더 기본값 (0-100)
+        origin_rate: 60,             // 슬라이더 기본값 (0-100)
+        stlye: 'vivid',              // 스타일 선택
+        quality: 'hd',               // 품질 선택
+      }}
     >
       <BaseButtonsForm.Item
         name="model"
         label={'Model'}
       >
         <BaseSelect placeholder={'모델을 선택해주세요.'}>
-          <Option value="dall_e_3">{'Dall-e-3'}</Option>
-          <Option value="dall_e_2">{'Dall-e-2'}</Option>
-          <Option value="sd_img_core">{'SD Image Core (3 credits)'}</Option>
-          <Option value="sd3_medium">{'SD3 Medium (3.5 credits)'}</Option>
-          <Option value="sd3_large">{'SD3 Large (6.5 credits)'}</Option>
-          <Option value="sd3_large_turbo">{'SD3 Large Turbo (4 credits)'}</Option>
-          <Option value="stable_fast_3d">{'Stable Fast 3D (2 credits)'}</Option>
-          <Option value="stable_video_diffusion">{'Stable Video Diffusion (3 credits)'}</Option>
+          {modelArray.map((model) => {
+            return (
+              <Option key={model} value={model}>
+                {t(`prompt.model.${model}`)}
+              </Option>
+            );
+          })}
         </BaseSelect>
       </BaseButtonsForm.Item>
 
@@ -120,21 +133,28 @@ export const MockUpValidationForm: React.FC = () => {
         </BaseSelect>
       </BaseButtonsForm.Item>
 
-      <BaseButtonsForm.Item name="slider" label={t('forms.validationFormLabels.slider')}>
+      <BaseButtonsForm.Item name="foregroud_rate" label={'포그라운드 비율 (기본값 0.85)'}>
         <BaseSlider
           tooltip={{ open: false }}
           marks={{
-            0: 'A',
-            20: 'B',
-            40: 'C',
-            60: 'D',
-            80: 'E',
-            100: 'F',
+            0: '0',
+            100: '1',
           }}
         />
       </BaseButtonsForm.Item>
+
+      <BaseButtonsForm.Item name="origin_rate" label={'포그라운드 비율 (기본값 1.8)'}>
+        <BaseSlider
+          tooltip={{ open: false }}
+          marks={{
+            0: '0',
+            100: '10',
+          }}
+        />
+      </BaseButtonsForm.Item>
+
       <BaseButtonsForm.Item
-        name="radio-button"
+        name="stlye"
         label={'스타일'}
       >
         <BaseRadio.Group>
@@ -142,8 +162,9 @@ export const MockUpValidationForm: React.FC = () => {
           <BaseRadio.Button value="natural">{'natural'}</BaseRadio.Button>
         </BaseRadio.Group>
       </BaseButtonsForm.Item>
+
       <BaseButtonsForm.Item
-        name="radio-button"
+        name="quality"
         label={'품질'}
       >
         <BaseRadio.Group>
@@ -151,31 +172,6 @@ export const MockUpValidationForm: React.FC = () => {
           <BaseRadio.Button value="hd">{'hd'}</BaseRadio.Button>
         </BaseRadio.Group>
       </BaseButtonsForm.Item>
-
-      {/*<BaseButtonsForm.Item label={t('forms.validationFormLabels.inputNumber')}>*/}
-      {/*  <label>*/}
-      {/*    <BaseButtonsForm.Item name="input-number" noStyle>*/}
-      {/*      <InputNumber min={1} max={10} />*/}
-      {/*    </BaseButtonsForm.Item>*/}
-      {/*  </label>*/}
-      {/*  <span> {t('forms.validationFormLabels.machines')}</span>*/}
-      {/*</BaseButtonsForm.Item>*/}
-
-      {/*<BaseButtonsForm.Item name="switch" label={t('forms.validationFormLabels.switch')} valuePropName="checked">*/}
-      {/*  <BaseSwitch />*/}
-      {/*</BaseButtonsForm.Item>*/}
-
-
-      {/*<BaseButtonsForm.Item name="radio-group" label={t('forms.validationFormLabels.radioGroup')}>*/}
-      {/*  <BaseRadio.Group>*/}
-      {/*    <BaseRadio value="a">{t('forms.validationFormLabels.item')} 1</BaseRadio>*/}
-      {/*    <BaseRadio value="b">{t('forms.validationFormLabels.item')} 2</BaseRadio>*/}
-      {/*    <BaseRadio value="c">{t('forms.validationFormLabels.item')} 3</BaseRadio>*/}
-      {/*  </BaseRadio.Group>*/}
-      {/*</BaseButtonsForm.Item>*/}
-
-
-
     </BaseButtonsForm>
   );
 };

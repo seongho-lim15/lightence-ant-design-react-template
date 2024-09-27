@@ -1,4 +1,5 @@
 import { NumericLiteral } from 'typescript';
+import { modelArray } from "@app/array/array";
 
 export type Dimension = number | string;
 
@@ -32,6 +33,18 @@ export enum CurrencyTypeEnum {
   USD = 'USD',
   ETH = 'ETH',
   BTC = 'BTC',
+}
+
+export interface promptFormData {
+  model?: string[] | null;
+  negatv_model?: string[] | null;
+  prompt: string;
+  size?: string | null;
+  rate?: number | null;
+  foreground_rate?: number | null;
+  origin_rate?: number | null;
+  quality?: string | null;
+  stlye?: string | null;
 }
 
 export interface PaymentCard {

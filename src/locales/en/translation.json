@@ -19,6 +19,18 @@
     "warning": "Warning text",
     "warningDescription": "This is a warning notice about copywriting."
   },
+  "prompt" : {
+    "model" : {
+      "dall_e_3" : "Dall-e-3",
+      "dall_e_2" : "Dall-e-2",
+      "sd_img_core" : "SD Image Core (3 credits)",
+      "sd3_medium" : "SD3 Medium (3.5 credits)",
+      "sd3_large" : "SD3 Large (6.5 credits)",
+      "sd3_large_turbo" : "SD3 Large Turbo (4 credits)",
+      "stable_fast_3d" : "Stable Fast 3D (2 credits)",
+      "stable_video_diffusion" : "Stable Video Diffusion (20 credits)"
+    }
+  },
   "auth": {
     "signUpSuccessDescription": "Please use your new credentials to log in",
     "signUpSuccessMessage": "New user was created"
