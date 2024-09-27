@@ -7,4 +7,4 @@ export const modelArray = [
   'sd3_large_turbo',
   'stable_fast_3d',
   'stable_video_diffusion',
-];
+] as const;

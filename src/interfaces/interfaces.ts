@@ -35,8 +35,10 @@ export enum CurrencyTypeEnum {
   BTC = 'BTC',
 }
 
-export interface promptFormData {
-  model?: string[] | null;
+export type ModelArray = (typeof modelArray)[number];
+
+export interface PromptFormData {
+  model?: ModelArray | null;
   negatv_model?: string[] | null;
   prompt: string;
   size?: string | null;
@@ -44,7 +46,7 @@ export interface promptFormData {
   foreground_rate?: number | null;
   origin_rate?: number | null;
   quality?: string | null;
-  stlye?: string | null;
+  style?: string | null;
 }
 
 export interface PaymentCard {
